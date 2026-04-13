@@ -67,10 +67,10 @@ export default function CaseFilesSection() {
             <>
               {/* 1. Heading block */}
               <div style={{ display: "flex", flexDirection: "column", gap: "14px", textAlign: "center", alignItems: "center", width: "100%" }}>
-                <h1 style={{ fontSize: "40px", fontWeight: 800, margin: 0, lineHeight: 1.1 }}>
+                <h1 style={{ fontSize: "40px", fontWeight: 800, margin: 0, lineHeight: 1.1, fontFamily: "'Inter', sans-serif" }}>
                   The GPS Spoofer
                 </h1>
-                <h2 style={{ fontSize: "21px", fontWeight: 700, margin: 0, lineHeight: 1.3 }}>
+                <h2 style={{ fontSize: "21px", fontWeight: 700, margin: 0, lineHeight: 1.3, fontFamily: "'Inter', sans-serif" }}>
                   Rohan applied to be a truck driver at MPK Shipments Ltd.
                 </h2>
                 <p style={{ fontSize: "16px", color: "rgba(255,255,255,0.65)", margin: 0, lineHeight: 1.5 }}>
@@ -160,10 +160,10 @@ export default function CaseFilesSection() {
 
               {/* Intro Text */}
               <div style={{ display: "flex", flexDirection: "column", gap: "16px", flex: 1 }}>
-                <h1 style={{ fontSize: "45px", fontWeight: 800, margin: 0, lineHeight: 1.1, maxWidth: "377px" }}>
+                <h1 style={{ fontSize: "45px", fontWeight: 800, margin: 0, lineHeight: 1.1, maxWidth: "377px", fontFamily: "'Inter', sans-serif" }}>
                   The GPS Spoofer
                 </h1>
-                <h2 style={{ fontSize: "30px", fontWeight: 700, margin: 0, lineHeight: 1.3, maxWidth: "517px" }}>
+                <h2 style={{ fontSize: "30px", fontWeight: 700, margin: 0, lineHeight: 1.3, maxWidth: "517px", fontFamily: "'Inter', sans-serif" }}>
                   Rohan applied to be a truck driver at MPK Shipments Ltd.
                 </h2>
                 <p style={{ fontSize: "20px", color: "rgba(255,255,255,0.65)", margin: 0, lineHeight: 1.4 }}>
@@ -184,6 +184,7 @@ export default function CaseFilesSection() {
             marginTop: isMobile ? "0" : "40px",
             marginBottom: isMobile ? "12px" : "30px",
             lineHeight: 1.1,
+            fontFamily: "'Inter', sans-serif",
           }}>
             Timeline of events
           </h2>

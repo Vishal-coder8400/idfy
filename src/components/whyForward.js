@@ -115,12 +115,12 @@ export default function WayForwardSection() {
 
             {/* "Are you ready" block */}
             {isMobile ? (
-              /* Mobile: stacked, no side-by-side ? */
+              /* Mobile: stacked */
               <div style={{ textAlign: "center" }}>
                 <h2
                   style={{
                     fontFamily: "'Inter',sans-serif",
-                    fontSize: "32px",
+                    fontSize: "19px",
                     fontWeight: 700,
                     lineHeight: 1.15,
                     marginBottom: "12px",
@@ -131,7 +131,7 @@ export default function WayForwardSection() {
                 <h2
                   style={{
                     fontFamily: "'Inter',sans-serif",
-                    fontSize: "32px",
+                    fontSize: "19px",
                     fontWeight: 700,
                     lineHeight: 1.15,
                     color: "#CE1010",
@@ -142,33 +142,23 @@ export default function WayForwardSection() {
                 </h2>
               </div>
             ) : (
-              /* Desktop: unchanged side-by-side layout */
-              <div className="flex items-center justify-center">
-                <div>
-                  <h2
-                    className="sm:text-[70px] text-[35px] text-center"
-                    style={{
-                      fontFamily: "'Inter',sans-serif",
-                      marginBottom: "26px",
-                      fontWeight: 700,
-                      lineHeight: 1,
-                    }}
-                  >
-                    The real question is -{" "}
-                    <span className="sm:text-[70px] text-[35px] text-[#CE1010]">
-                      Are you ready to make that change
-                    </span>
-                  </h2>
-                </div>
+              /* Desktop: single line */
+              <div style={{ textAlign: "center" }}>
                 <h2
-                  className="sm:text-[125px] text-[75px] text-center text-[#CE1010]"
                   style={{
                     fontFamily: "'Inter',sans-serif",
-                    lineHeight: "1.35",
-                    marginBottom: "26px",
+                    fontSize: "clamp(28px, 3.5vw, 60px)",
                     fontWeight: 700,
+                    lineHeight: 1,
+                    whiteSpace: "nowrap",
+                    marginBottom: "26px",
                   }}
-                >?</h2>
+                >
+                  The real question is -{" "}
+                  <span style={{ color: "#CE1010" }}>
+                    Are you ready to make that change?
+                  </span>
+                </h2>
               </div>
             )}
           </div>
