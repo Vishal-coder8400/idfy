@@ -27,8 +27,8 @@ const MILES = [
         desc: "Handle final doorstep delivery - food, groceries, and parcels.",
       },
       {
-        num: null,   // ← no number
-        title: null, // ← no title
+        num: null,
+        title: null,
         desc: "Factors such as high attrition, constant churn, frequent relocation, and flexible partner-based models (vs. full-time employment) increase verification complexity and compliance risk across these segments.",
       },
     ],
@@ -96,7 +96,6 @@ function MileContent({ mile, layout }) {
   if (layout === "tablet") {
     return (
       <div style={{ width: "100%" }}>
-        {/* Image full-width on tablet */}
         <div style={{
           width: "100%",
           aspectRatio: "16/7",
@@ -146,17 +145,15 @@ function MileContent({ mile, layout }) {
     );
   }
 
-  // Desktop layout
+  // Desktop layout — 100% unchanged from original
   return (
     <div style={{
       display: "flex",
       gap: 100,
-      // ↓ stretch so the image div fills the same height as the text column
       alignItems: "stretch",
       width: "100%",
       justifyContent: "center",
     }}>
-      {/* Image — wider than before; height fills the row via alignItems:stretch */}
       <div style={{
         flexShrink: 0,
         width: 380,
@@ -179,7 +176,6 @@ function MileContent({ mile, layout }) {
         />
       </div>
 
-      {/* Text — drives the row height */}
       <div style={{
         flex: 1,
         paddingTop: 8,
@@ -187,7 +183,7 @@ function MileContent({ mile, layout }) {
         maxWidth: 420,
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",  // ← vertically center text within image height
+        justifyContent: "center",
       }}>
         {mile.items.map((item, i) => (
           <div key={i} style={{ marginBottom: i < mile.items.length - 1 ? 48 : 0 }}>
@@ -223,12 +219,13 @@ export default function PeopleSection() {
   const [layout, setLayout] = useState("desktop"); // "mobile" | "tablet" | "desktop"
   const timerRef = useRef(null);
 
-  // Refs for scroll handler (avoids stale closure on active/animState)
   const wrapperRef = useRef(null);
   const activeRef = useRef(0);
   const animLockedRef = useRef(false);
 
   const [isLargeDesktop, setIsLargeDesktop] = useState(false);
+  // Track whether we're on a laptop-sized viewport (1100–1399px width)
+  const [isLaptop, setIsLaptop] = useState(false);
 
   useEffect(() => {
     const check = () => {
@@ -237,6 +234,7 @@ export default function PeopleSection() {
       else if (w < 1100) setLayout("tablet");
       else setLayout("desktop");
       setIsLargeDesktop(w >= 1400);
+      setIsLaptop(w >= 1100 && w < 1400);
     };
     check();
     window.addEventListener("resize", check);
@@ -246,7 +244,6 @@ export default function PeopleSection() {
   const isMobile = layout === "mobile";
   const isTablet = layout === "tablet";
 
-  // go() uses refs so it's safe to call from scroll handler without stale closures
   const go = useCallback((idx) => {
     if (idx === activeRef.current || animLockedRef.current) return;
     const dir = idx > activeRef.current ? "left" : "right";
@@ -264,23 +261,18 @@ export default function PeopleSection() {
     }, ANIM_MS);
   }, []);
 
-  // ── Scroll-driven slide advancement ──────────────────────────────────────
-  // The outer wrapper is 400vh tall; the sticky section is 100vh.
-  // totalScrollable = 400vh - 100vh = 300vh (100vh per slide).
-  // As the user scrolls, progress 0→0.333 = slide 0, 0.333→0.667 = slide 1, 0.667→1 = slide 2.
   useEffect(() => {
     const handleScroll = () => {
       if (!wrapperRef.current) return;
       const rect = wrapperRef.current.getBoundingClientRect();
       const wrapperHeight = wrapperRef.current.offsetHeight;
       const vh = window.innerHeight;
-      const scrolled = -rect.top;               // px scrolled past wrapper top
+      const scrolled = -rect.top;
       const totalScrollable = wrapperHeight - vh;
 
       if (scrolled < 0 || scrolled > totalScrollable) return;
 
       const rawProgress = scrolled / totalScrollable;
-      // Bias +0.12 so dot/slide transitions fire a bit earlier in the scroll range
       const progress = Math.min(1, rawProgress + 0.12);
       const newIndex = Math.min(
         Math.floor(progress * MILES.length),
@@ -305,7 +297,7 @@ export default function PeopleSection() {
 
   const DOT_POSITIONS = isMobile ? ["18%", "50%", "82%"] : ["20%", "50%", "80%"];
 
-  // Responsive values
+  // ALL original values — nothing changed
   const headingSize = isMobile ? "30px" : isTablet ? "60px" : "clamp(80px, 8vw, 110px)";
   const subSize = isMobile ? "11px" : isTablet ? "16px" : "clamp(18px, 1.6vw, 28px)";
   const subLine = isMobile ? "15px" : isTablet ? "24px" : "clamp(28px, 2.5vw, 40px)";
@@ -313,20 +305,27 @@ export default function PeopleSection() {
   const contentMinH = isMobile ? 520 : isTablet ? 480 : 460;
 
   return (
-    // ── Scroll pin wrapper ── 400vh tall so each slide gets ~100vh of scroll
     <div ref={wrapperRef} style={{ height: "400vh", position: "relative" }}>
       <section style={{
         background: "#fff",
         borderRadius: "0px 0px 23px 23px",
-        // Sticky pin
         position: "sticky",
         top: 0,
-        height: "100vh",
+        /*
+         * LAPTOP FIX (1100–1399px):
+         * The full desktop content is taller than a typical laptop viewport
+         * (e.g. 768px or 900px), so `height: 100vh` clips it.
+         * Fix: let the section grow to fit its content with `minHeight: 100vh`
+         * and `height: auto`. This keeps the sticky behaviour intact while
+         * allowing the section to be taller than the viewport when needed.
+         * Desktop (1400px+), tablet, and mobile are all unchanged.
+         */
+        height: isLaptop ? "auto" : "100vh",
+        minHeight: "100vh",
         overflow: "hidden",
         boxSizing: "border-box",
         paddingTop: isMobile ? 24 : isTablet ? 48 : "clamp(40px, 5vh, 80px)",
         paddingBottom: isMobile ? 40 : isTablet ? 80 : "clamp(40px, 5vh, 80px)",
-        // Vertical centering of all content within the pinned panel
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
