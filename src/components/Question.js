@@ -68,6 +68,10 @@ export default function Question() {
     margin: "0 0 24px",
     textAlign: "center",
     lineHeight: 1.2,
+     fontSize:
+      vw >= 1400 && vw <= 2600
+        ? "50px"
+        : undefined
   }}
 >
   This section answers questions like
@@ -97,7 +101,12 @@ export default function Question() {
                   <img src={q.img} alt="" style={{ width: 150, height: 100, objectFit: "contain" }} />
                 </div>
                 <p style={{
-                  color: "white", fontSize: isMobile ? "14px" : "clamp(13px,1.05vw,17px)",
+                  color: "white", fontSize:
+  isMobile
+    ? "14px"
+    : vw >= 1400 && vw <= 2600
+    ? "25px"
+    : "clamp(13px,1.05vw,17px)",
                   fontWeight: 500, margin: 0, lineHeight: 1.5,
                   fontFamily: "'Inter',sans-serif",
                 }}>{q.text}</p>
@@ -132,7 +141,12 @@ export default function Question() {
       lineHeight: 1.05,
       opacity: 1,
       transform: "none",
-      fontSize: isMobile ? 50 : 110,
+      fontSize:
+  isMobile
+    ? 50
+    : vw >= 1400 && vw <= 2600
+    ? "50px"
+    : 110,
     }}
   >
     People in focus

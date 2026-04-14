@@ -27,13 +27,13 @@ export default function FraudSection() {
   textAlign: "center",
   margin: 0,
   fontSize:
-    isMobile
-      ? "30px"
-      : vw >= 1400 && vw <= 2600
-      ? "52px"
-      : isShortDesktop
-      ? "110px"
-      : "120px",
+  isMobile
+    ? "30px"
+    : vw >= 1400 && vw <= 2600
+    ? "50px"
+    : isShortDesktop
+    ? "110px"
+    : "120px",
 lineHeight:
   isMobile
     ? "40.86px"
@@ -103,7 +103,12 @@ lineHeight:
         <p
           style={{
             color: "white",
-            fontSize: isMobile ? "12px" : "30px",
+           fontSize:
+  isMobile
+    ? "12px"
+    : vw >= 1400 && vw <= 2600
+    ? "25px"
+    : "30px",
             fontWeight: 600,
             margin: isMobile ? "0 0 12px" : "0 0 20px",
             textAlign: "center",
@@ -157,7 +162,12 @@ lineHeight:
         <p
           style={{
             color: "white",
-            fontSize: isMobile ? "13px" : "28px",
+            fontSize:
+  isMobile
+    ? "13px"
+    : vw >= 1400 && vw <= 2600
+    ? "25px"
+    : "28px",
             fontFamily: "'Inter', sans-serif",
             textAlign: "center",
             margin: "24px 0 0px", // ✅ FIXED
