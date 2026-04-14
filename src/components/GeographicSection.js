@@ -124,7 +124,12 @@ export default function GeographicSection() {
     lineHeight: 1.05,
 
     // ✅ responsive font (prevents breaking)
-    fontSize: isMobile ? "22px" : "clamp(40px, 5vw, 80px)",
+    fontSize:
+  isMobile
+    ? "22px"
+    : vw >= 1400 && vw <= 2600
+    ? "50px"
+    : "clamp(40px, 5vw, 80px)",
 
     // ❌ REMOVE maxWidth restriction
     // maxWidth: isMobile ? "100%" : "900px",
@@ -144,7 +149,12 @@ export default function GeographicSection() {
             margin: "12px 0 0",
             fontFamily: "'Inter',sans-serif",
             /* Changed from 30px → 26px */
-            fontSize: isMobile ? "11px" : "26px",
+           fontSize:
+  isMobile
+    ? "11px"
+    : vw >= 1400 && vw <= 2600
+    ? "25px"
+    : "26px",
           }}>
             A breakdown of states with the highest risk rates across India.
           </p>
@@ -180,7 +190,10 @@ export default function GeographicSection() {
             <p className="hidden lg:block" style={{
               color: "white",
               /* Changed from 30px → 26px */
-              fontSize: 26,
+              fontSize:
+  vw >= 1400 && vw <= 2600
+    ? "25px"
+    : 26,
               lineHeight: "115%",
               fontFamily: "'Inter',sans-serif",
               margin: 0,
@@ -192,7 +205,10 @@ export default function GeographicSection() {
             <p className="hidden lg:block" style={{
               color: "white",
               /* Changed from 30px → 26px */
-              fontSize: 26,
+             fontSize:
+  vw >= 1400 && vw <= 2600
+    ? "25px"
+    : 26,
               lineHeight: "115%",
               fontFamily: "'Inter',sans-serif",
               margin: 0,
