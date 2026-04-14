@@ -33,20 +33,24 @@ export default function FraudSection() {
 
   return (
     <div ref={sectionRef} style={{ position: "relative" }}>
-      <div
-        style={{
-          position: isMobile ? "relative" : "sticky",
-          top: 0,
-          height: isMobile ? "auto" : isShortDesktop ? "105vh" : "95vh",
-          overflow: "hidden",
-          background: "black",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "flex-start",
-          padding: isMobile ? "60px 16px 40px" : isShortDesktop ? "85px 64px 36px" : "50px 64px 20px",
-        }}
-      >
+    <div
+  className="
+    px-4 sm:px-6 md:px-10 lg:px-16
+    pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28
+    pb-12 sm:pb-16 md:pb-20 lg:pb-24
+  "
+  style={{
+    position: isMobile ? "relative" : "sticky",
+    top: 0,
+    height: isMobile ? "auto" : isShortDesktop ? "105vh" : "95vh",
+    overflow: "hidden",
+    background: "black",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  }}
+>
         {/* Ellipse decoration — desktop only */}
         {!isMobile && (
           <div

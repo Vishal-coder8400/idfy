@@ -306,30 +306,25 @@ export default function PeopleSection() {
 
   return (
     <div ref={wrapperRef} style={{ height: "400vh", position: "relative" }}>
-      <section style={{
-        background: "#fff",
-        borderRadius: "0px 0px 23px 23px",
-        position: "sticky",
-        top: 0,
-        /*
-         * LAPTOP FIX (1100–1399px):
-         * The full desktop content is taller than a typical laptop viewport
-         * (e.g. 768px or 900px), so `height: 100vh` clips it.
-         * Fix: let the section grow to fit its content with `minHeight: 100vh`
-         * and `height: auto`. This keeps the sticky behaviour intact while
-         * allowing the section to be taller than the viewport when needed.
-         * Desktop (1400px+), tablet, and mobile are all unchanged.
-         */
-        height: isLaptop ? "auto" : "100vh",
-        minHeight: "100vh",
-        overflow: "hidden",
-        boxSizing: "border-box",
-        paddingTop: isMobile ? 24 : isTablet ? 48 : "clamp(40px, 5vh, 80px)",
-        paddingBottom: isMobile ? 40 : isTablet ? 80 : "clamp(40px, 5vh, 80px)",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-      }}>
+    <section
+  className="
+    pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28
+    pb-12 sm:pb-16 md:pb-20 lg:pb-24
+  "
+  style={{
+    background: "#fff",
+    borderRadius: "0px 0px 23px 23px",
+    position: "sticky",
+    top: 0,
+    height: isLaptop ? "auto" : "100vh",
+    minHeight: "100vh",
+    overflow: "hidden",
+    boxSizing: "border-box",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+  }}
+>
         <style>{`
           @keyframes pexit-left   { from{transform:translateX(0);opacity:1}    to{transform:translateX(-105%);opacity:0} }
           @keyframes pexit-right  { from{transform:translateX(0);opacity:1}    to{transform:translateX(105%);opacity:0}  }
@@ -370,12 +365,14 @@ export default function PeopleSection() {
           </p>
         </div>
 
-        <div style={{
-          maxWidth: 1320,
-          margin: "0 auto",
-          padding: isMobile ? "0 4vw" : isTablet ? "0 6vw" : "0 5vw",
-          width: "100%",
-        }}>
+   <div
+  className="px-4 sm:px-6 md:px-10 lg:px-16"
+  style={{
+    maxWidth: 1320,
+    margin: "0 auto",
+    width: "100%",
+  }}
+>
 
           {/* Timeline */}
           <div style={{ marginBottom: isMobile ? 36 : 52 }}>

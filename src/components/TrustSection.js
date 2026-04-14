@@ -111,10 +111,14 @@ export default function TrustSection() {
   if (isMobile) {
     return (
       <div
-        id="dots-png"
-        ref={sectionRef}
-        style={{ padding: "40px 6vw 32px" }}
-      >
+  id="dots-png"
+  ref={sectionRef}
+  className="
+    px-4 sm:px-6 md:px-10
+    pt-12 sm:pt-16 md:pt-20 lg:pt-24
+    pb-12 sm:pb-16 md:pb-20
+  "
+>
         {/* Trust text block */}
         <div style={{ textAlign: "center", lineHeight: 1.08, marginBottom: 20 }}>
           <div>
@@ -206,17 +210,18 @@ export default function TrustSection() {
         ref={sectionRef}
         style={{ position: "relative", height: "180vh" }}
       >
-        <div style={{
-          position: "sticky",
-          top: 0,
-          height: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          overflow: "hidden",
-          padding: "0 6vw",
-        }}>
+      <div style={{
+  position: "sticky",
+  top: 0,
+  height: "100vh",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  overflow: "hidden",
+}}
+className="px-4 sm:px-6 md:px-10 lg:px-16"
+>
           <div style={{
             position: "relative",
             textAlign: "center",

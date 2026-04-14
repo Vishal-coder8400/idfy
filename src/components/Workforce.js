@@ -184,29 +184,30 @@ export default function Workforce() {
       style={{ height: isMobile ? "" : sectionH, position: "relative", marginTop: 0 }}
     >
       <div
-        style={{
-          position: "sticky",
-          top: 0,
-          // FIX 5: Restore the explicit 100vh so the sticky panel never
-          // collapses and cards are never clipped vertically.
-          height: isMobile ? "auto" : "100vh",
-          overflow: "hidden",
-          display: "flex",
-          flexDirection: "column",
-          background: "#fff",
-          justifyContent: isShortDesktop ? "flex-start" : "center",
-          paddingTop: isMobile ? 20 : isShortDesktop ? 10 : 40,
-          paddingBottom: isMobile ? 20 : isShortDesktop ? 16 : 60,
-          boxSizing: "border-box",
-        }}
-      >
+  className="
+    pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28
+    pb-12 sm:pb-16 md:pb-20 lg:pb-24
+  "
+  style={{
+    position: "sticky",
+    top: 0,
+    height: isMobile ? "auto" : "100vh",
+    overflow: "hidden",
+    display: "flex",
+    flexDirection: "column",
+    background: "#fff",
+    justifyContent: isShortDesktop ? "flex-start" : "center",
+    boxSizing: "border-box",
+  }}
+>
         {/* Header text block */}
-        <div style={{
-          textAlign: "center",
-          marginBottom: isMobile ? 20 : isTablet ? 32 : isShortDesktop ? 24 : 48,
-          paddingLeft: isMobile ? 16 : 24,
-          paddingRight: isMobile ? 16 : 24,
-        }}>
+        <div
+  className="px-4 sm:px-6 md:px-10 lg:px-16"
+  style={{
+    textAlign: "center",
+    marginBottom: isMobile ? 20 : isTablet ? 32 : isShortDesktop ? 24 : 48,
+  }}
+>
           <h2 style={{
             fontFamily: "'Inter',sans-serif",
             fontWeight: 700,

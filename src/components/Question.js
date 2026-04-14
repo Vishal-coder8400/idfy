@@ -33,16 +33,25 @@ export default function Question() {
 
   return (
     <div style={{ position: "relative" }}>
-      <div style={{
-        position: "relative",
-        height: isMobile ? "auto" : isShortDesktop ? "157vh" : "100vh",
-        overflow: "hidden",
-        background: "black",
-        display: "flex", flexDirection: "column",
-        alignItems: "center", justifyContent: "center",
-        padding: isMobile ? "0px 20px 48px" : "48px 64px",
-        gap: isMobile ? 24 : 40,
-      }}>
+ <div
+  className="
+    px-4 sm:px-6 md:px-10 lg:px-16
+    pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28
+    pb-12 sm:pb-16 md:pb-20 lg:pb-24
+  "
+  style={{
+    position: isMobile ? "relative" : "sticky",
+    top: 0,
+    height: isMobile ? "auto" : "100vh",
+    minHeight: "100vh",
+    overflow: "hidden",
+    background: "black",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center", // ✅ FIXED
+  }}
+>
         {!isMobile && (
           <div style={{
             position: "absolute",

@@ -73,11 +73,11 @@ useEffect(() => {
 
   return (
     <>
-      <section
-        ref={ref}
-        className="bg-white px-6 pt-10 md:pt-[110px] md:px-[60px] flex flex-col items-center text-center"
-        style={{ borderRadius: "23px 23px 0px 0px" }}
-      >
+   <section
+  ref={ref}
+  className="bg-white px-6 pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28 md:px-[60px] flex flex-col items-center text-center"
+  style={{ borderRadius: "23px 23px 0px 0px" }}
+>
         <h2
           className="sm:mt-0 mt-5 text-[19px] sm:text-[60px] text-[#343434] leading-tight font-[300] max-w-[760px] mb-7 tracking-[-0.02em]"
           style={{ fontFamily: "'Inter',sans-serif" , padding: isMobile ? "0 60px" : "0" }}
@@ -109,26 +109,24 @@ useEffect(() => {
         </p>
       </section>
 
-      <section
-        ref={bigRef}
-        className="sm:pt-0 pb-5 sm:pb-0 pt-5 bg-white px-4 sm:px-6 md:py-[50px] md:px-10 text-center"
-      >
-        <h2
-          className="font-sans text-[45px] sm:text-[100px] font-black text-gig-red leading-[1.05] transition-all duration-700 tracking-[-0.03em]"
-          style={{
-            fontFamily: "'Inter',sans-serif",
-            fontWeight: "700",
-            color: "#CE1010",
-            wordSpacing: "13px",
-            letterSpacing: "-3%",
-            opacity: bigVisible ? 1 : 0,
-            transform: bigVisible ? "scale(1)" : "scale(0.88)",
-          }}
-        >
-          The biggest risk <br className="sm:flex hidden" />
-          still remains<AnimatedDots trigger={bigVisible} />
-        </h2>
-      </section>
+  <section
+  ref={bigRef}
+  className="bg-white px-4 sm:px-6 md:px-10 pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28 pb-8 sm:pb-10 md:pb-12 text-center"
+>
+  <h2
+    className="font-sans text-[40px] sm:text-[70px] md:text-[85px] lg:text-[100px] font-bold leading-[1.05] tracking-[-0.03em] transition-all duration-700"
+    style={{
+      fontFamily: "'Inter',sans-serif",
+      color: "#CE1010",
+      wordSpacing: "10px",
+      opacity: bigVisible ? 1 : 0,
+      transform: bigVisible ? "scale(1)" : "scale(0.9)",
+    }}
+  >
+    The biggest risk <br className="hidden sm:block" />
+    still remains<AnimatedDots trigger={bigVisible} />
+  </h2>
+</section>
     </>
   );
 }

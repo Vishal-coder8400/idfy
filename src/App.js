@@ -22,7 +22,7 @@ import Workforce from './components/Workforce';
 export default function App() {
   return (
     <div>
-      {/* <Navbar /> */}
+      <Navbar />
       <HeroSection />
       <StatsSection />
       <PillarsSection />

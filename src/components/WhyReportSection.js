@@ -66,11 +66,17 @@ export default function WhyReportSection() {
   }, []);
 
   return (
-    <section style={{
-      background: "#fff",
-      padding: isMobile ? "48px 5vw 48px" : "80px 8vw 100px",
-      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
-    }}>
+   <section
+  style={{
+    background: "#fff",
+    fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+  }}
+  className="
+    px-4 sm:px-6 md:px-10 lg:px-16
+    pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28
+    pb-12 sm:pb-16 md:pb-20 lg:pb-24
+  "
+>
       <h2
         style={{
           fontWeight: 700,
