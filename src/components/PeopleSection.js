@@ -305,12 +305,15 @@ export default function PeopleSection() {
   const contentMinH = isMobile ? 520 : isTablet ? 480 : 460;
 
   return (
-    <div ref={wrapperRef} style={{ height: "400vh", position: "relative" }}>
-    <section
-  className="
-    pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28
-    pb-12 sm:pb-16 md:pb-20 lg:pb-24
-  "
+<div
+  ref={wrapperRef}
+  style={{
+    height: "450vh", // ✅ more scroll space
+    position: "relative"
+  }}
+>
+
+<section
   style={{
     background: "#fff",
     borderRadius: "0px 0px 23px 23px",
@@ -318,7 +321,8 @@ export default function PeopleSection() {
     top: 0,
     height: isLaptop ? "auto" : "100vh",
     minHeight: "100vh",
-    overflow: "hidden",
+    overflow: "visible", // ✅ FIX
+    paddingBottom: isMobile ? 60 : 100, // ✅ GAP
     boxSizing: "border-box",
     display: "flex",
     flexDirection: "column",
@@ -344,7 +348,10 @@ export default function PeopleSection() {
             color: "#343434",
             lineHeight: 1.03,
             margin: "0 0 24px",
-            fontSize: headingSize,
+            fontSize:
+  window.innerWidth >= 1400 && window.innerWidth <= 2600
+    ? "50px"
+    : headingSize,
             marginTop: isLargeDesktop ? 60 : 0,
           }}>
             The people who{" "}
@@ -352,7 +359,10 @@ export default function PeopleSection() {
             powered this evolution
           </h2>
           <p style={{
-            fontSize: subSize,
+      fontSize:
+  window.innerWidth >= 1400 && window.innerWidth <= 2600
+    ? "25px"
+    : subSize,
             color: "#5D5D5D",
             lineHeight: subLine,
             maxWidth: isLargeDesktop ? 980 : 900,
