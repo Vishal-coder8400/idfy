@@ -123,20 +123,26 @@ export default function PillarsSection() {
         }
       `}</style>
 
-      <h2 className="mt-0 sm:mt-6 sm:text-[55px] text-[30px]" ref={headRef} style={{
-        fontFamily: "'Inter','system-ui',sans-serif",
-        fontWeight: 700,
-        color: "#343434", textAlign: "center", marginBottom: isMobile ? 0 : 56,
-        letterSpacing: 0,
-        opacity: headVisible ? 1 : 0,
-        transform: headVisible ? "translateY(0)" : "translateY(24px)",
-        transition: "opacity 0.6s, transform 0.6s",
-        fontSize: isMobile ? "22px" : "60px",
-        marginTop: isMobile ? 20 : 0,
-      }}>
-        The three pillars of the gig economy
-      </h2>
-
+   <h2
+  className="mt-0 sm:mt-6 sm:text-[55px] text-[30px]"
+  ref={headRef}
+  style={{
+    fontFamily: "'Inter','system-ui',sans-serif",
+    fontWeight: 700,
+    color: "#343434",
+    textAlign: "center",
+    marginBottom: isMobile ? 0 : 56,
+    letterSpacing: 0,
+    opacity: headVisible ? 1 : 0,
+    transform: headVisible ? "translateY(0)" : "translateY(24px)",
+    transition: "opacity 0.6s, transform 0.6s",
+    fontSize: isMobile ? "22px" : "60px",
+    marginTop: isMobile ? 20 : 0,
+    ...(window.innerWidth >= 1400 && window.innerWidth <= 2600 && { fontSize: "52px" })
+  }}
+>
+  The three pillars of the gig economy
+</h2>
       <div ref={ref} className="pillars-row" style={{
         display: "flex", gap: 40,
         alignItems: "flex-start", justifyContent: "center", flexWrap: "wrap",

@@ -11,18 +11,12 @@ const TIMELINE = [
 ];
 
 const MOBILE_CARD_W = 210;
-// FIX 1: Define fixed card heights so every card is identical regardless of content
-const MOBILE_CARD_H = 270;
-const DESKTOP_CARD_H = 380;
 const MOBILE_GAP = 12;
 const TOTAL_MOBILE_RAIL_W =
   TIMELINE.length * MOBILE_CARD_W + (TIMELINE.length - 1) * MOBILE_GAP;
 
-function TimelineCard({ item, entrance, isMobile, index }) {
+function TimelineCard({ item, entrance, isMobile, index, cardHeight, imgHeight }) {
   const cardWidth = isMobile ? MOBILE_CARD_W : 300;
-  // FIX 1 (cont.): Apply fixed heights to card and image so all cards are uniform
-  const cardHeight = isMobile ? MOBILE_CARD_H : DESKTOP_CARD_H;
-  const imgHeight = isMobile ? 85 : 130;
 
   return (
     <div style={{
@@ -35,7 +29,6 @@ function TimelineCard({ item, entrance, isMobile, index }) {
     }}>
       <div style={{
         width: cardWidth,
-        // FIX 1 (cont.): Enforce a fixed height on the card box itself
         height: cardHeight,
         background: "#fff",
         borderRadius: 20,
@@ -44,11 +37,10 @@ function TimelineCard({ item, entrance, isMobile, index }) {
         boxShadow: "0 12px 40px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06)",
         display: "flex",
         flexDirection: "column",
-        // FIX 1 (cont.): Distribute space so text area + image fill the fixed height evenly
         justifyContent: "space-between",
         boxSizing: "border-box",
       }}>
-        {/* Text content – flex:1 so it expands to fill available space */}
+        {/* Text content */}
         <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
           <div style={{ padding: isMobile ? "10px 12px 6px" : "16px 20px 10px" }}>
             <div style={{
@@ -61,7 +53,6 @@ function TimelineCard({ item, entrance, isMobile, index }) {
               fontSize: isMobile ? 12 : 14,
               color: "#444", lineHeight: 1.55,
               fontFamily: "'Inter',sans-serif", margin: 0,
-              // FIX 1 (cont.): Clamp text to 3 lines so variable-length copy never stretches the card
               display: "-webkit-box",
               WebkitLineClamp: 3,
               WebkitBoxOrient: "vertical",
@@ -74,7 +65,7 @@ function TimelineCard({ item, entrance, isMobile, index }) {
           </div>
         </div>
 
-        {/* Image – fixed height, never grows or shrinks */}
+        {/* Image */}
         <div style={{
           margin: isMobile ? "0 8px 8px" : "0 12px 12px",
           borderRadius: 10,
@@ -138,24 +129,46 @@ export default function Workforce() {
 
   const railShift = ease(clamp(progress / 0.95, 0, 1));
 
-  // FIX 2: Spread card entrance triggers more evenly so each card is fully
-  // revealed before the rail starts moving to the next one.
   const cardEntrance = (i) => {
     if (i < 3) return 1;
-    // Each card gets a 0.12-wide window (was 0.14) spaced 0.08 apart (was 0.06)
     const start = i * 0.08;
     const end = start + 0.12;
     return ease(clamp((progress - start) / (end - start), 0, 1));
   };
 
-  // FIX 3: Mobile – start fully off-screen right, end fully off-screen left
-  // with enough margin so the last card is never clipped.
-  const mobileInitial = vw * 0.5;                           // begin further right for a clean first-card reveal
-  const mobileEnd = -(TOTAL_MOBILE_RAIL_W - vw + 48);  // extra 48px padding so last card clears the edge
+  // ── Responsive sizing ──────────────────────────────────────────────────────
+  // On short screens (MacBook Air 13", 900px tall) we need cards that fit
+  // comfortably inside the viewport after the header text block.
+  // Strategy: measure the available vertical space dynamically and derive
+  // card + image heights from that budget instead of using fixed constants.
+
+  const isShortDesktop = !isMobile && !isTablet && vh < 820;
+  const isVeryShort   = !isMobile && !isTablet && vh < 700; // e.g. 13" with toolbar
+
+  // Header block occupies roughly this many px (title + body + sources + padding)
+  const headerBudget = isMobile ? 0 : isVeryShort ? 160 : isShortDesktop ? 190 : 260;
+
+  // Bottom safe gap — ensures cards never touch the bottom of the viewport
+  const bottomGap = isMobile ? 24 : isVeryShort ? 28 : isShortDesktop ? 36 : 48;
+
+  // Available height for the card rail area
+  const availableH = vh - headerBudget - bottomGap;
+
+  // Card height: fill the available space but clamp to reasonable min/max
+  const DESKTOP_CARD_H = isMobile
+    ? 270
+    : Math.min(Math.max(availableH, 260), 400); // 260–400px
+
+  // Image height: proportional slice of the card
+  const IMG_HEIGHT = isMobile ? 85 : Math.round(DESKTOP_CARD_H * 0.33);
+  // ──────────────────────────────────────────────────────────────────────────
+
+  // Mobile rail translation
+  const mobileInitial = vw * 0.5;
+  const mobileEnd = -(TOTAL_MOBILE_RAIL_W - vw + 48);
   const mobileTranslateX = mobileInitial * (1 - railShift) + mobileEnd * railShift;
 
-  // FIX 3 (cont.): Desktop – wider travel range so the rightmost card fully
-  // enters the viewport before progress reaches 1.
+  // Desktop rail translation
   const desktopCardW = 300;
   const desktopGap = isTablet ? 24 : 32;
   const totalDesktopW = TIMELINE.length * desktopCardW + (TIMELINE.length - 1) * desktopGap;
@@ -165,17 +178,30 @@ export default function Workforce() {
   const desktopEnd = -((totalDesktopW - vw * 0.88) / vw) * 100;
   const desktopTranslateX = `calc(${desktopStart - railShift * (desktopStart - desktopEnd)}vw)`;
 
-  // FIX 4: Give the section enough scroll-height so that the rail can
-  // complete its full travel without the sticky panel snapping away too early.
-  // Mobile needs less scroll-travel; desktop needs more cards' worth of height.
+  // Scroll-height: enough for full rail travel
   const sectionH = isMobile
     ? vh + vh * 0.8
     : vh + vh * (TIMELINE.length * 0.35);
 
-  const isShortDesktop = !isMobile && !isTablet && vh < 780;
+  const titleSize = isMobile
+    ? "clamp(32px, 10vw, 52px)"
+    : isTablet
+    ? "clamp(52px, 8vw, 80px)"
+    : isShortDesktop
+    ? "clamp(48px, 6vw, 72px)"   // slightly smaller on short screens
+    : "clamp(64px, 7vw, 105px)";
 
-  const titleSize = isMobile ? "clamp(32px, 10vw, 52px)" : isTablet ? "clamp(52px, 8vw, 80px)" : isShortDesktop ? "80px" : "clamp(64px, 7vw, 105px)";
-  const bodySize = isMobile ? "clamp(13px, 3.5vw, 16px)" : isTablet ? "clamp(16px, 2.5vw, 22px)" : isShortDesktop ? "20px" : "clamp(18px, 1.8vw, 30px)";
+  const bodySize = isMobile
+    ? "clamp(13px, 3.5vw, 16px)"
+    : isTablet
+    ? "clamp(16px, 2.5vw, 22px)"
+    : isShortDesktop
+    ? "clamp(14px, 1.6vw, 18px)"  // tighter on short screens
+    : "clamp(18px, 1.8vw, 30px)";
+
+  // Top/bottom padding for the sticky panel — reduced on short screens
+  const stickyPaddingTop    = isMobile ? 48 : isVeryShort ? 20 : isShortDesktop ? 28 : 48;
+  const stickyPaddingBottom = isMobile ? 0  : isVeryShort ? 20 : isShortDesktop ? 28 : 40;
 
   return (
     <div
@@ -184,46 +210,53 @@ export default function Workforce() {
       style={{ height: isMobile ? "" : sectionH, position: "relative", marginTop: 0 }}
     >
       <div
-  className="
-    pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28
-    pb-12 sm:pb-16 md:pb-20 lg:pb-24
-  "
-  style={{
-    position: "sticky",
-    top: 0,
-    height: isMobile ? "auto" : "100vh",
-    overflow: "hidden",
-    display: "flex",
-    flexDirection: "column",
-    background: "#fff",
-    justifyContent: isShortDesktop ? "flex-start" : "center",
-    boxSizing: "border-box",
-  }}
->
+        style={{
+          position: "sticky",
+          top: 0,
+          height: isMobile ? "auto" : "100vh",
+          // KEY FIX: use overflow:hidden so sticky clips at viewport edge,
+          // but we've already ensured cards fit within the height budget above.
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          background: "#fff",
+          justifyContent: "flex-start",
+          boxSizing: "border-box",
+          paddingTop: stickyPaddingTop,
+          paddingBottom: stickyPaddingBottom,
+        }}
+      >
         {/* Header text block */}
         <div
-  className="px-4 sm:px-6 md:px-10 lg:px-16"
-  style={{
-    textAlign: "center",
-    marginBottom: isMobile ? 20 : isTablet ? 32 : isShortDesktop ? 24 : 48,
-  }}
->
+          className="px-4 sm:px-6 md:px-10 lg:px-16"
+          style={{
+            textAlign: "center",
+            marginBottom: isMobile ? 20 : isVeryShort ? 12 : isShortDesktop ? 16 : 40,
+            flexShrink: 0,
+          }}
+        >
           <h2 style={{
             fontFamily: "'Inter',sans-serif",
             fontWeight: 700,
             color: "#CE1010",
             lineHeight: 1.05,
-            margin: "0 0 12px",
-            fontSize: titleSize,
+            margin: "0 0 10px",
+            fontSize:
+  vw >= 1400 && vw <= 2600
+    ? "50px"
+    : titleSize,    
           }}>
             The Workforce<br />Behind Every Order
           </h2>
           <p style={{
-            fontSize: bodySize,
+          fontSize:
+  vw >= 1400 && vw <= 2600
+    ? "25px"
+    : bodySize,
             lineHeight: isMobile ? 1.5 : 1.4,
             color: "#343434",
             maxWidth: 900,
-            margin: "0 auto 10px",
+            margin: "0 auto 8px",
             fontWeight: 300,
             textAlign: "center",
           }}>
@@ -232,7 +265,7 @@ export default function Workforce() {
             Let's look at how the gig economy evolved with various business models
             over the last 3 decades.
           </p>
-          <p style={{ fontSize: isMobile ? 11 : 14, color: "#aaa", fontStyle: "italic", margin: 0 }}>
+          <p style={{ fontSize: isMobile ? 11 : 13, color: "#aaa", fontStyle: "italic", margin: 0 }}>
             Sources:{" "}
             {["Kearney", "Young Urban Project", "Shiproket"].map((s) => (
               <a
@@ -251,16 +284,16 @@ export default function Workforce() {
         </div>
 
         {/* Card rail */}
-        {/* FIX 6: overflow:visible here — the sticky container's own overflow:hidden
-            clips cards at the viewport boundary, so a nested hidden wrapper was
-            double-clipping cards mid-scroll. Setting it visible lets the sticky
-            parent's clip be the only boundary, eliminating partial-card cutoffs. */}
-        <div style={{ width: "100%", overflow: "visible", paddingBottom: isMobile ? 20 : 16 }}>
+        <div style={{
+          width: "100%",
+          overflow: "visible",
+          // This bottom padding is the "safe gap" between cards and viewport bottom
+          paddingBottom: bottomGap,
+          flexShrink: 0,
+        }}>
           <div style={{
             display: "flex",
             gap: isMobile ? MOBILE_GAP : isTablet ? 24 : 32,
-            // FIX 7: align-items:flex-start keeps all cards top-aligned so
-            // shorter cards don't stretch to match taller siblings.
             alignItems: "flex-start",
             paddingLeft: isMobile ? "4vw" : "6vw",
             paddingRight: isMobile ? "4vw" : "6vw",
@@ -268,8 +301,6 @@ export default function Workforce() {
               ? `translateX(${mobileTranslateX}px)`
               : `translateX(${desktopTranslateX})`,
             willChange: "transform",
-            // FIX 8: Slightly longer transition so fast scrolls don't produce a
-            // jarring jump; linear keeps the motion tied 1-to-1 to scroll speed.
             transition: "transform 0.12s linear",
           }}>
             {TIMELINE.map((item, i) => (
@@ -279,6 +310,8 @@ export default function Workforce() {
                 entrance={cardEntrance(i)}
                 isMobile={isMobile}
                 index={i}
+                cardHeight={DESKTOP_CARD_H}
+                imgHeight={IMG_HEIGHT}
               />
             ))}
           </div>

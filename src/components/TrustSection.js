@@ -111,14 +111,10 @@ export default function TrustSection() {
   if (isMobile) {
     return (
       <div
-  id="dots-png"
-  ref={sectionRef}
-  className="
-    px-4 sm:px-6 md:px-10
-    pt-12 sm:pt-16 md:pt-20 lg:pt-24
-    pb-12 sm:pb-16 md:pb-20
-  "
->
+        id="dots-png"
+        ref={sectionRef}
+        style={{ padding: "40px 6vw 32px" }}
+      >
         {/* Trust text block */}
         <div style={{ textAlign: "center", lineHeight: 1.08, marginBottom: 20 }}>
           <div>
@@ -205,73 +201,194 @@ export default function TrustSection() {
     <>
       {p >= 0 && createPortal(overlay, document.body)}
 
-      <div
-        id="dots-png"
-        ref={sectionRef}
-        style={{ position: "relative", height: "180vh" }}
-      >
-      <div style={{
-  position: "sticky",
-  top: 0,
-  height: "100vh",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  overflow: "hidden",
-}}
-className="px-4 sm:px-6 md:px-10 lg:px-16"
+     <div
+  id="dots-png"
+  ref={sectionRef}
+  style={{ position: "relative", height: "180vh" }}
 >
-          <div style={{
-            position: "relative",
-            textAlign: "center",
-            zIndex: 1,
-            lineHeight: 1.08,
-          }}>
-            <div>
-              <span style={{
-                fontFamily: "Inter", fontWeight: 600, color: "#1A3BB0",
-                display: "block", lineHeight: 1.0,
-                fontSize: "clamp(40px, 8vw, 110px)",
-              }}>Trust,</span>
-            </div>
-
-            <div style={{
-              display: "flex", alignItems: "baseline",
-              justifyContent: "center", gap: "0.2em", flexWrap: "wrap",
-            }}>
-              <span style={{
-                fontFamily: "Inter", fontWeight: 300, color: "#5D5D5D",
-                lineHeight: 1.0, fontSize: "clamp(38px, 7.5vw, 105px)",
-              }}>however is </span>
-              <span style={{
-                fontFamily: "Inter", fontWeight: 700, color: "#343434",
-                lineHeight: 1.05, marginLeft: "14px",
-                fontSize: "clamp(38px, 7.5vw, 105px)",
-              }}>fragile.</span>
-            </div>
-
-            <div>
-              <span style={{ fontFamily: "Inter", fontWeight: 700, color: "#CE1010", fontSize: "clamp(38px, 7.5vw, 105px)" }}>One </span>
-              <span style={{ fontFamily: "Inter", fontWeight: 400, color: "#5d5d5d", fontSize: "clamp(38px, 7.5vw, 105px)" }}>news headline.</span>
-            </div>
-            <div>
-              <span style={{ fontFamily: "Inter", fontWeight: 700, color: "#CE1010", fontSize: "clamp(38px, 7.5vw, 105px)" }}>One </span>
-              <span style={{ fontFamily: "Inter", fontWeight: 400, color: "#5d5d5d", fontSize: "clamp(38px, 7.5vw, 105px)" }}>breach</span>
-            </div>
-            <div>
-              <span style={{ fontFamily: "Inter", fontWeight: 700, color: "#CE1010", fontSize: "clamp(38px, 7.5vw, 105px)" }}>One </span>
-              <span style={{ fontFamily: "Inter", fontWeight: 400, color: "#5d5d5d", fontSize: "clamp(38px, 7.5vw, 105px)" }}>bad experience.</span>
-            </div>
-
-            <div style={{ marginTop: 28 }}>
-              <p style={{ fontSize: "20px", color: "#343434", lineHeight: 1.6, margin: 0 }}>
-                is all it takes to undo years of hard-earned customer confidence.
-              </p>
-            </div>
-          </div>
-        </div>
+  <div
+    style={{
+      position: "sticky",
+      top: 0,
+      height: "100vh",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      overflow: "hidden",
+      padding: "0 6vw",
+    }}
+  >
+    <h2
+      style={{
+        position: "relative",
+        textAlign: "center",
+        zIndex: 1,
+        lineHeight: 1.08,
+        margin: 0,
+      }}
+    >
+      <div>
+        <span
+          style={{
+            fontFamily: "Inter",
+            fontWeight: 600,
+            color: "#1A3BB0",
+            display: "block",
+            lineHeight: 1.0,
+            fontSize:
+              vw >= 1400 && vw <= 2600
+                ? "50px"
+                : "clamp(40px, 8vw, 110px)",
+          }}
+        >
+          Trust,
+        </span>
       </div>
+
+      <div
+        style={{
+          display: "flex",
+          alignItems: "baseline",
+          justifyContent: "center",
+          gap: "0.2em",
+          flexWrap: "wrap",
+        }}
+      >
+        <span
+          style={{
+            fontFamily: "Inter",
+            fontWeight: 300,
+            color: "#5D5D5D",
+            lineHeight: 1.0,
+            fontSize:
+              vw >= 1400 && vw <= 2600
+                ? "50px"
+                : "clamp(38px, 7.5vw, 105px)",
+          }}
+        >
+          however is{" "}
+        </span>
+        <span
+          style={{
+            fontFamily: "Inter",
+            fontWeight: 700,
+            color: "#343434",
+            lineHeight: 1.05,
+            marginLeft: "14px",
+            fontSize:
+              vw >= 1400 && vw <= 2600
+                ? "50px"
+                : "clamp(38px, 7.5vw, 105px)",
+          }}
+        >
+          fragile.
+        </span>
+      </div>
+
+      <div>
+        <span
+          style={{
+            fontFamily: "Inter",
+            fontWeight: 700,
+            color: "#CE1010",
+            fontSize:
+              vw >= 1400 && vw <= 2600
+                ? "50px"
+                : "clamp(38px, 7.5vw, 105px)",
+          }}
+        >
+          One{" "}
+        </span>
+        <span
+          style={{
+            fontFamily: "Inter",
+            fontWeight: 400,
+            color: "#5d5d5d",
+            fontSize:
+              vw >= 1400 && vw <= 2600
+                ? "50px"
+                : "clamp(38px, 7.5vw, 105px)",
+          }}
+        >
+          news headline.
+        </span>
+      </div>
+
+      <div>
+        <span
+          style={{
+            fontFamily: "Inter",
+            fontWeight: 700,
+            color: "#CE1010",
+            fontSize:
+              vw >= 1400 && vw <= 2600
+                ? "50px"
+                : "clamp(38px, 7.5vw, 105px)",
+          }}
+        >
+          One{" "}
+        </span>
+        <span
+          style={{
+            fontFamily: "Inter",
+            fontWeight: 400,
+            color: "#5d5d5d",
+            fontSize:
+              vw >= 1400 && vw <= 2600
+                ? "50px"
+                : "clamp(38px, 7.5vw, 105px)",
+          }}
+        >
+          breach
+        </span>
+      </div>
+
+      <div>
+        <span
+          style={{
+            fontFamily: "Inter",
+            fontWeight: 700,
+            color: "#CE1010",
+            fontSize:
+              vw >= 1400 && vw <= 2600
+                ? "50px"
+                : "clamp(38px, 7.5vw, 105px)",
+          }}
+        >
+          One{" "}
+        </span>
+        <span
+          style={{
+            fontFamily: "Inter",
+            fontWeight: 400,
+            color: "#5d5d5d",
+            fontSize:
+              vw >= 1400 && vw <= 2600
+                ? "50px"
+                : "clamp(38px, 7.5vw, 105px)",
+          }}
+        >
+          bad experience.
+        </span>
+      </div>
+
+      <div style={{ marginTop: 28 }}>
+        <p
+          style={{
+            fontSize:
+              vw >= 1400 && vw <= 2600 ? "25px" : "20px",
+            color: "#343434",
+            lineHeight: 1.6,
+            margin: 0,
+          }}
+        >
+          is all it takes to undo years of hard-earned customer confidence.
+        </p>
+      </div>
+    </h2>
+  </div>
+</div>
     </>
   );
 }

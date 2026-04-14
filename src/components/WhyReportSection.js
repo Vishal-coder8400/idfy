@@ -83,7 +83,12 @@ export default function WhyReportSection() {
           fontFamily: "'Inter',sans-serif",
           color: "#343434",
           textAlign: "center",
-          fontSize: isMobile ? "22px" : "60px",
+         fontSize:
+  isMobile
+    ? "22px"
+    : window.innerWidth >= 1400 && window.innerWidth <= 2600
+    ? "52px"
+    : "60px",
           marginBottom: isMobile ? 36 : 72,
           letterSpacing: "-0.02em",
         }}
@@ -194,110 +199,133 @@ export default function WhyReportSection() {
             alignItems: "start",
           }}>
             {/* Left: Stat block */}
-            <div>
-              <div
-                ref={ref}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  paddingTop: 12,
-                }}
-              >
-                <p style={{
-                  fontSize: 30, color: "#4b5563", fontWeight: 500,
-                  marginBottom: 8, margin: "0 0 8px 0",
-                  opacity: visible ? 1 : 0,
-                  transform: visible ? "translateY(0)" : "translateY(20px)",
-                  transition: "opacity 0.5s ease, transform 0.5s ease",
-                  lineHeight: "115%",
-                }}>
-                  We analyzed over
-                </p>
+          <div>
+  <div
+    ref={ref}
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      paddingTop: 12,
+    }}
+  >
+    <p style={{
+      fontSize: 30, color: "#4b5563", fontWeight: 500,
+      marginBottom: 8, margin: "0 0 8px 0",
+      opacity: visible ? 1 : 0,
+      transform: visible ? "translateY(0)" : "translateY(20px)",
+      transition: "opacity 0.5s ease, transform 0.5s ease",
+      lineHeight: "115%",
+    }}>
+      We analyzed over
+    </p>
 
-                <div style={{
-                  fontSize: "clamp(80px, 12vw, 120px)",
-                  fontWeight: 700, color: "#CE1010", lineHeight: 1,
-                  letterSpacing: "-0.02em",
-                  margin: "12px 0 8px",
-                  opacity: visible ? 1 : 0,
-                  transform: visible ? "translateY(0)" : "translateY(20px)",
-                  transition: "opacity 0.5s 0.05s, transform 0.5s 0.05s",
-                }}>
-                  <CountUp target={4.9} trigger={visible} duration={1600} />M
-                </div>
+    <div style={{
+      fontSize: "clamp(80px, 12vw, 120px)",
+      fontWeight: 700, color: "#CE1010", lineHeight: 1,
+      letterSpacing: "-0.02em",
+      margin: "12px 0 8px",
+      opacity: visible ? 1 : 0,
+      transform: visible ? "translateY(0)" : "translateY(20px)",
+      transition: "opacity 0.5s 0.05s, transform 0.5s 0.05s",
+    }}>
+      <CountUp target={4.9} trigger={visible} duration={1600} />M
+    </div>
 
-                <p style={{
-                  fontSize: "clamp(24px, 6vw, 50px)",
-                  fontWeight: 700, color: "#343434", lineHeight: 1.2,
-                  margin: "16px 0 24px",
-                  opacity: visible ? 1 : 0,
-                  transform: visible ? "translateY(0)" : "translateY(20px)",
-                  transition: "opacity 0.5s 0.1s, transform 0.5s 0.1s",
-                }}>
-                  Background<br />Verifications
-                </p>
+    <p style={{
+      fontSize: "clamp(24px, 6vw, 50px)",
+      fontWeight: 700, color: "#343434", lineHeight: 1.2,
+      margin: "16px 0 24px",
+      opacity: visible ? 1 : 0,
+      transform: visible ? "translateY(0)" : "translateY(20px)",
+      transition: "opacity 0.5s 0.1s, transform 0.5s 0.1s",
+    }}>
+      Background<br />Verifications
+    </p>
 
-                <p style={{
-                  fontSize: 30,
-                  color: "#5a6874",
-                  margin: 0,
-                  fontWeight: 300,
-                  opacity: visible ? 1 : 0,
-                  transform: visible ? "translateY(0)" : "translateY(20px)",
-                  transition: "opacity 0.5s 0.15s, transform 0.5s 0.15s",
-                  lineHeight: "36px",
-                }}>
-                  conducted last year to build this report,
-                </p>
-              </div>
-            </div>
+    <p style={{
+      fontSize:
+        window.innerWidth >= 1400 && window.innerWidth <= 2600
+          ? "25px"
+          : 30,
+      color: "#5a6874",
+      margin: 0,
+      fontWeight: 300,
+      opacity: visible ? 1 : 0,
+      transform: visible ? "translateY(0)" : "translateY(20px)",
+      transition: "opacity 0.5s 0.15s, transform 0.5s 0.15s",
+      lineHeight: "36px",
+    }}>
+      conducted last year to build this report,
+    </p>
+  </div>
+</div>
 
             {/* Right: Aims card */}
-            <div>
-              <div style={{
-                background: "#EEEEEE",
-                borderRadius: 28,
-                padding: "44px 48px",
-                border: "1px solid #e8e8e8",
-                opacity: visible ? 1 : 0,
-                transform: visible ? "translateX(0)" : "translateX(24px)",
-                transition: "opacity 0.6s 0.2s, transform 0.6s 0.2s",
-              }}>
-                <p style={{
-                  fontSize: 16, color: "#343434",
-                  fontWeight: 700, marginBottom: 28,
-                  letterSpacing: "0.5px",
-                }}>
-                  with the aim of
-                </p>
-                <ul style={{
-                  listStyle: "none", padding: 0, margin: 0,
-                  display: "flex", flexDirection: "column",
-                  gap: 20,
-                }}>
-                  {AIMS.map((aim, i) => (
-                    <li key={i} style={{
-                      display: "flex", gap: 16, alignItems: "flex-start",
-                      opacity: visible ? 1 : 0,
-                      transform: visible ? "translateY(0)" : "translateY(12px)",
-                      transition: `opacity 0.4s ${0.25 + i * 0.08}s, transform 0.4s ${0.25 + i * 0.08}s`,
-                    }}>
-                      <span style={{
-                        flexShrink: 0, width: 8, height: 8,
-                        borderRadius: "50%", background: "#d93025", marginTop: 9,
-                      }} />
-                      <span style={{
-                        fontSize: 20, color: "#2c3e4f",
-                        lineHeight: 1.6, fontWeight: 400,
-                      }}>
-                        {aim}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+           <div>
+  <div style={{
+    background: "#EEEEEE",
+    borderRadius: 28,
+    padding: "44px 48px",
+    border: "1px solid #e8e8e8",
+    opacity: visible ? 1 : 0,
+    transform: visible ? "translateX(0)" : "translateX(24px)",
+    transition: "opacity 0.6s 0.2s, transform 0.6s 0.2s",
+  }}>
+    <p style={{
+      fontSize:
+        window.innerWidth >= 1400 && window.innerWidth <= 2600
+          ? "25px"
+          : 16,
+      color: "#343434",
+      fontWeight: 700,
+      marginBottom: 28,
+      letterSpacing: "0.5px",
+    }}>
+      with the aim of
+    </p>
+
+    <ul style={{
+      listStyle: "none",
+      padding: 0,
+      margin: 0,
+      display: "flex",
+      flexDirection: "column",
+      gap: 20,
+    }}>
+      {AIMS.map((aim, i) => (
+        <li key={i} style={{
+          display: "flex",
+          gap: 16,
+          alignItems: "flex-start",
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateY(0)" : "translateY(12px)",
+          transition: `opacity 0.4s ${0.25 + i * 0.08}s, transform 0.4s ${0.25 + i * 0.08}s`,
+        }}>
+          <span style={{
+            flexShrink: 0,
+            width: 8,
+            height: 8,
+            borderRadius: "50%",
+            background: "#d93025",
+            marginTop: 9,
+          }} />
+          <span style={{
+            fontSize:
+              window.innerWidth >= 1400 && window.innerWidth <= 2600
+                ? "25px"
+                : 20,
+            color: "#2c3e4f",
+            lineHeight: 1.6,
+            fontWeight: 400,
+          }}>
+            {aim}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
           </div>
         </div>
       )}

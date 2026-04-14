@@ -54,8 +54,24 @@ export default function HeroSection() {
 
 
   const titleFontSizeDesktop = lerp(90, 120, textEnterT);
-  const titleFontSize = isMobile ? "32px" : isTablet ? "52px" : `${titleFontSizeDesktop}px`;
-  const subtitleFontSize = isMobile ? "18px" : isTablet ? "28px" : "52px";
+
+const isMacAir = vw >= 1400 && vw <= 2600; // approx Mac Air screen
+
+const titleFontSize = isMobile
+  ? "32px"
+  : isTablet
+  ? "52px"
+  : isMacAir
+  ? "75px"
+  : `${titleFontSizeDesktop}px`;
+
+const subtitleFontSize = isMobile
+  ? "18px"
+  : isTablet
+  ? "28px"
+  : isMacAir
+  ? "50px"
+  : "52px";
 
 
   const titleTopOffset = isMobile ? "-8vh" : isTablet ? "-4vh" : "0px";

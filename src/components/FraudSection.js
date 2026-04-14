@@ -21,15 +21,29 @@ export default function FraudSection() {
   const isShortDesktop = !isMobile && !isTablet && vh < 780;
 
   const headingStyle = {
-    fontFamily: "'Inter', sans-serif",
-    fontWeight: 700,
-    color: "white",
-    textAlign: "center",
-    margin: 0,
-    fontSize: isMobile ? "30px" : isShortDesktop ? "110px" : "120px",
-    lineHeight: isMobile ? "40.86px" : isShortDesktop ? "120px" : "130px",
-    letterSpacing: "-0.04em",
-  };
+  fontFamily: "'Inter', sans-serif",
+  fontWeight: 700,
+  color: "white",
+  textAlign: "center",
+  margin: 0,
+  fontSize:
+    isMobile
+      ? "30px"
+      : vw >= 1400 && vw <= 2600
+      ? "52px"
+      : isShortDesktop
+      ? "110px"
+      : "120px",
+lineHeight:
+  isMobile
+    ? "40.86px"
+    : vw >= 1400 && vw <= 2600
+    ? "60px"
+    : isShortDesktop
+    ? "120px"
+    : "130px",
+  letterSpacing: "-0.04em",
+};
 
   return (
    <div ref={sectionRef} style={{ position: "relative", overflow: "hidden" }}>

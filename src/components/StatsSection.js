@@ -73,59 +73,90 @@ useEffect(() => {
 
   return (
     <>
-   <section
+<section
   ref={ref}
   className="bg-white px-6 pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28 md:px-[60px] flex flex-col items-center text-center"
   style={{ borderRadius: "23px 23px 0px 0px" }}
 >
-        <h2
-          className="sm:mt-0 mt-5 text-[19px] sm:text-[60px] text-[#343434] leading-tight font-[300] max-w-[760px] mb-7 tracking-[-0.02em]"
-          style={{ fontFamily: "'Inter',sans-serif" , padding: isMobile ? "0 60px" : "0" }}
-        >
-          The gig economy has changed{" "}
-          <strong className="text-[19px] sm:text-[60px] text-[#343434] font-bold leading-3">
-            our consumption patterns
-          </strong>
-        </h2>
+<h2
+  className="sm:mt-0 mt-5 text-[19px] sm:text-[60px] text-[#343434] leading-tight font-[300] max-w-[760px] mb-7 tracking-[-0.02em]"
+  style={{
+    fontFamily: "'Inter',sans-serif",
+    padding: isMobile ? "0 60px" : "0",
+    fontSize:
+      !isMobile && window.innerWidth >= 1400 && window.innerWidth <= 2600
+        ? "50px"
+        : undefined
+  }}
+>
+  The gig economy has changed
+  <br />
+  <strong className="text-[19px] sm:text-[60px] text-[#343434] font-bold leading-3">
+    our consumption patterns
+  </strong>
+</h2>
 
-        <p className="font-sans text-[#5D5D5D] text-[16px] sm:text-[30px] leading-relaxed max-w-[960px] mb-3 font-light px-2 sm:px-0">
-          becoming an integral part of everyday life. From late-night food deliveries{" "}
-          <br className="sm:flex hidden" />
-          and instant electronics, it has fundamentally reshaped urban living.
-        </p>
+  <p
+    className="font-sans text-[#5D5D5D] text-[16px] sm:text-[30px] leading-relaxed max-w-[960px] mb-3 font-light px-2 sm:px-0"
+    style={{
+      fontSize:
+        !isMobile && window.innerWidth >= 1400 && window.innerWidth <= 2600
+          ? "25px"
+          : undefined
+    }}
+  >
+    becoming an integral part of everyday life. From late-night food deliveries{" "}
+    <br className="sm:flex hidden" />
+    and instant electronics, it has fundamentally reshaped urban living.
+  </p>
 
-        <p className="font-sans text-[#5D5D5D] text-[16px] sm:text-[30px] leading-relaxed max-w-[960px] font-light mb-4 px-2 sm:px-0">
-          At the heart of this transformation are millions of gig workers powering{" "}
-          <br className="sm:flex hidden" />
-          the instant convenience ecosystem, a workforce that stood at
-          <br className="sm:flex hidden" />
-          <strong className="text-[#1A3BB0] text-[16px] sm:text-[30px] font-sans font-bold">
-            <CountUp target={7.7} suffix="M in 2020" trigger={visible} />
-          </strong>{" "}
-          and is expected to{" "}
-          <strong className="text-[#1A3BB0] text-[16px] sm:text-[30px] font-sans font-bold">
-            exceed <CountUp target={23.5} suffix="M by 2030." trigger={visible} duration={2400} />
-          </strong>
-        </p>
-      </section>
+  <p
+    className="font-sans text-[#5D5D5D] text-[16px] sm:text-[30px] leading-relaxed max-w-[960px] font-light mb-4 px-2 sm:px-0"
+    style={{
+      fontSize:
+        !isMobile && window.innerWidth >= 1400 && window.innerWidth <= 2600
+          ? "25px"
+          : undefined
+    }}
+  >
+    At the heart of this transformation are millions of gig workers powering{" "}
+    <br className="sm:flex hidden" />
+    the instant convenience ecosystem, a workforce that stood at
+    <br className="sm:flex hidden" />
+    <strong className="text-[#1A3BB0] text-[16px] sm:text-[30px] font-sans font-bold">
+      <CountUp target={7.7} suffix="M in 2020" trigger={visible} />
+    </strong>{" "}
+    and is expected to{" "}
+    <strong className="text-[#1A3BB0] text-[16px] sm:text-[30px] font-sans font-bold">
+      exceed{" "}
+      <CountUp
+        target={23.5}
+        suffix="M by 2030."
+        trigger={visible}
+        duration={2400}
+      />
+    </strong>
+  </p>
+</section>
 
   <section
   ref={bigRef}
   className="bg-white px-4 sm:px-6 md:px-10 pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28 pb-8 sm:pb-10 md:pb-12 text-center"
 >
-  <h2
-    className="font-sans text-[40px] sm:text-[70px] md:text-[85px] lg:text-[100px] font-bold leading-[1.05] tracking-[-0.03em] transition-all duration-700"
-    style={{
-      fontFamily: "'Inter',sans-serif",
-      color: "#CE1010",
-      wordSpacing: "10px",
-      opacity: bigVisible ? 1 : 0,
-      transform: bigVisible ? "scale(1)" : "scale(0.9)",
-    }}
-  >
-    The biggest risk <br className="hidden sm:block" />
-    still remains<AnimatedDots trigger={bigVisible} />
-  </h2>
+ <h2
+  className="font-sans text-[40px] sm:text-[70px] md:text-[85px] lg:text-[100px] font-bold leading-[1.05] tracking-[-0.03em] transition-all duration-700"
+  style={{
+    fontFamily: "'Inter',sans-serif",
+    color: "#CE1010",
+    wordSpacing: "10px",
+    opacity: bigVisible ? 1 : 0,
+    transform: bigVisible ? "scale(1)" : "scale(0.9)",
+    ...(window.innerWidth >= 1400 && window.innerWidth <= 2600 && { fontSize: "52px" })
+  }}
+>
+  The biggest risk <br className="hidden sm:block" />
+  still remains<AnimatedDots trigger={bigVisible} />
+</h2>
 </section>
     </>
   );
