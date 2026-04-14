@@ -152,7 +152,7 @@ function MileContent({ mile, layout }) {
       gap: 100,
       alignItems: "stretch",
       width: "100%",
-      justifyContent: "center",
+      justifyContent: "flex-start",
     }}>
       <div style={{
         flexShrink: 0,
@@ -318,11 +318,11 @@ export default function PeopleSection() {
     background: "#fff",
     borderRadius: "0px 0px 23px 23px",
     position: "sticky",
-  top: isMobile ? 0 : 20,
-    height: isLaptop ? "auto" : "100vh",
-    minHeight: "100vh",
+top: isMobile ? 0 : 64,
+    minHeight: "calc(100vh - 64px)",
+height: "auto",
     overflow: "visible", // ✅ FIX
-    paddingBottom: isMobile ? 60 : 100, // ✅ GAP
+    paddingBottom: isMobile ? 60 : 120, // ✅ GAP
     boxSizing: "border-box",
     display: "flex",
     flexDirection: "column",
@@ -345,7 +345,7 @@ export default function PeopleSection() {
   textAlign: "center",
   padding: sectionPad,
   marginBottom: isMobile ? 36 : 25,
-  marginTop: isMobile ? 0 : 30,   // ✅ add this
+  marginTop: isMobile ? 0 : 40,   // ✅ add this
 }}>
           <h2 style={{
             fontFamily: "Inter",
