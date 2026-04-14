@@ -32,7 +32,7 @@ export default function FraudSection() {
   };
 
   return (
-    <div ref={sectionRef} style={{ position: "relative" }}>
+   <div ref={sectionRef} style={{ position: "relative", overflow: "hidden" }}>
       <div
         style={{
           position: "relative", // ✅ FIXED (removed sticky)
