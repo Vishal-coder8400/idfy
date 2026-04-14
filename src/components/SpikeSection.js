@@ -140,7 +140,7 @@ export default function SpikesSection() {
       }}>
         <div style={{
           display: "flex", flexDirection: "column", alignItems: "center",
-          marginTop: 20,
+          marginTop: 0,
         }}>
           <div style={{
             width: 30, height: 30, borderRadius: "50%",

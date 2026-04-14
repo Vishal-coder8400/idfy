@@ -49,7 +49,9 @@ export default function ImpactSection() {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "flex-end",
-            padding: isMobile ? "40px 13px 40px" : "72px 80px 120px",
+            padding: isMobile
+  ? "60px 16px 60px"
+  : "80px clamp(24px, 4vw, 64px) 80px",
             textAlign: "center",
           }}
         >

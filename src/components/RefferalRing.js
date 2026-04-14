@@ -45,7 +45,9 @@ export default function ReferralRingSection() {
 
   return (
     <section style={{
-      padding: isMobile ? "60px 6vw 80px" : "80px 6vw 100px",
+      padding: isMobile
+  ? "60px 16px 60px"
+  : "80px clamp(24px, 4vw, 64px) 80px",
       position: "relative",
       backgroundColor: "#000",
       overflow: "hidden",
@@ -330,26 +332,49 @@ export default function ReferralRingSection() {
         transform: savingsVisible ? "translateY(0)" : "translateY(30px)",
         transition: "opacity 0.7s, transform 0.7s",
       }}>
-        <p style={{
-          fontFamily: "Inter",
-          fontSize: isMobile ? "11px" : "60px",
-          color: "rgba(255,255,255,0.8)",
-          marginBottom: 16,
-          lineHeight: isMobile ? 1.5 : "70px"
-          
-        }}>
-          This single catch saved <span style={{ color: "#CE1010", fontWeight: 700 }}>Zap Logistics</span> nearly
-        </p>
-        <h2 style={{
-          fontFamily: "Inter",
-          fontSize: isMobile ? "38px" : "120px",
-          fontWeight: 700,
-          color: "white",
-          lineHeight: 1.05,
-          margin: "0 0 24px"
-        }}>
-          <span style={{ color: "#CE1010" }}>₹</span>16 lakh in potential<br />theft and fraud
-        </h2>
+       <p style={{
+  fontFamily: "Inter",
+  fontSize: isMobile ? "14px" : "56px",
+  color: "rgba(255,255,255,0.85)",
+  
+  // ✅ FIX 1: ONE LINE
+  whiteSpace: "nowrap",
+  
+  // ✅ FIX 2: CENTER + CONTROL WIDTH
+  textAlign: "center",
+  maxWidth: "100%",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  
+  // ✅ FIX 3: TOP GAP
+  marginTop: isMobile ? 40 : 80,
+  marginBottom: isMobile ? 12 : 20,
+  
+  lineHeight: isMobile ? 1.4 : "64px",
+}}>
+  This single catch saved{" "}
+  <span style={{ color: "#CE1010", fontWeight: 700 }}>
+    Zap Logistics
+  </span>{" "}
+  nearly
+</p>
+      <h2 style={{
+  fontFamily: "Inter",
+  fontSize: "clamp(36px, 6.5vw, 88px)", // ✅ safer for ALL devices
+  fontWeight: 700,
+  color: "white",
+  lineHeight: 1.15, // ✅ prevents crop
+  margin: "0 0 40px",
+  textAlign: "center",
+}}>
+  <span style={{ whiteSpace: "nowrap" }}>
+    <span style={{ color: "#CE1010" }}>₹</span>16 lakh
+  </span>
+  <br />
+  <span style={{ whiteSpace: isMobile ? "normal" : "nowrap" }}>
+    in potential theft and fraud
+  </span>
+</h2>
         <p style={{
           fontFamily: "Inter",
           fontSize: isMobile ? "14px" : "30px",

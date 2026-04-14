@@ -15,7 +15,9 @@ export default function CaseFilesSection() {
   return (
     <section style={{
       background: "linear-gradient(160deg, #0a0a18 0%, #111827 100%)",
-      padding: "30px 6vw 80px",
+      padding: isMobile
+  ? "60px 16px 60px"
+  : "80px clamp(24px, 4vw, 64px) 80px",
       textAlign: "center",
     }}>
 
