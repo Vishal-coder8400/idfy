@@ -313,7 +313,10 @@ export default function StatsSection() {
             maxWidth: "min(1400px, 100%)",
             opacity: 1,
             transform: "none",
-            fontSize: "clamp(60px, 7.5vw, 110px)",
+         fontSize:
+  window.innerWidth >= 1400 && window.innerWidth <= 2600
+    ? "50px"
+    : "clamp(60px, 7.5vw, 110px)",
           }}
         >
           E-commerce & Quick<br />Commerce Risk Hotspots
@@ -374,7 +377,10 @@ export default function StatsSection() {
             lineHeight: "115%",
             opacity: 1,
             transform: "none",
-            fontSize: "clamp(60px, 8vw, 120px)",
+            fontSize:
+  window.innerWidth >= 1400 && window.innerWidth <= 2600
+    ? "50px"
+    : "clamp(60px, 8vw, 120px)",
             maxWidth: "min(1400px, 100%)",
           }}
         >
@@ -387,7 +393,10 @@ export default function StatsSection() {
           textAlign: "center",
           fontFamily: "Inter",
           opacity: 1,
-          fontSize: "clamp(16px, 2vw, 30px)",
+        fontSize:
+  window.innerWidth >= 1400 && window.innerWidth <= 2600
+    ? "25px"
+    : "clamp(16px, 2vw, 30px)",
           lineHeight: "150%",
           maxWidth: "min(900px, 100%)",
         }}>
@@ -417,7 +426,10 @@ export default function StatsSection() {
           opacity: 1,
           maxWidth: "min(1100px, 100%)",
           marginBottom: 40,
-          fontSize: "clamp(16px, 2vw, 30px)",
+         fontSize:
+  window.innerWidth >= 1400 && window.innerWidth <= 2600
+    ? "25px"
+    : "clamp(16px, 2vw, 30px)",
           boxSizing: "border-box",
         }}>
           Risk rates remain consistent throughout the year for all segments,<br />
