@@ -210,21 +210,19 @@ export default function Workforce() {
       style={{ height: isMobile ? "" : sectionH, position: "relative", marginTop: 0 }}
     >
       <div
-        style={{
-          position: "sticky",
-          top: 0,
-          height: isMobile ? "auto" : "100vh",
-          // KEY FIX: use overflow:hidden so sticky clips at viewport edge,
-          // but we've already ensured cards fit within the height budget above.
-          overflow: "hidden",
-          display: "flex",
-          flexDirection: "column",
-          background: "#fff",
-          justifyContent: "flex-start",
-          boxSizing: "border-box",
-          paddingTop: stickyPaddingTop,
-          paddingBottom: stickyPaddingBottom,
-        }}
+     style={{
+  position: "sticky",
+  top: isMobile ? 0 : 10,   // ✅ prevent top crop
+  height: isMobile ? "auto" : "100vh",
+  overflow: "visible",      // ✅ main fix
+  display: "flex",
+  flexDirection: "column",
+  background: "#fff",
+  justifyContent: "flex-start",
+  boxSizing: "border-box",
+  paddingTop: stickyPaddingTop,
+  paddingBottom: stickyPaddingBottom,
+}}
       >
         {/* Header text block */}
         <div

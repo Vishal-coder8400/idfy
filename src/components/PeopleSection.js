@@ -318,7 +318,7 @@ export default function PeopleSection() {
     background: "#fff",
     borderRadius: "0px 0px 23px 23px",
     position: "sticky",
-    top: 0,
+  top: isMobile ? 0 : 20,
     height: isLaptop ? "auto" : "100vh",
     minHeight: "100vh",
     overflow: "visible", // ✅ FIX
@@ -341,7 +341,12 @@ export default function PeopleSection() {
         `}</style>
 
         {/* Heading */}
-        <div style={{ textAlign: "center", padding: sectionPad, marginBottom: isMobile ? 36 : 25 }}>
+        <div style={{
+  textAlign: "center",
+  padding: sectionPad,
+  marginBottom: isMobile ? 36 : 25,
+  marginTop: isMobile ? 0 : 30,   // ✅ add this
+}}>
           <h2 style={{
             fontFamily: "Inter",
             fontWeight: 700,
