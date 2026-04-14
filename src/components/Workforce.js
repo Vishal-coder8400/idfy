@@ -210,7 +210,7 @@ export default function Workforce() {
       style={{ height: isMobile ? "" : sectionH, position: "relative", marginTop: 0 }}
     >
       <div
-     style={{
+ style={{
   position: "sticky",
   top: isMobile ? 0 : 10,   // ✅ prevent top crop
   height: isMobile ? "auto" : "100vh",
