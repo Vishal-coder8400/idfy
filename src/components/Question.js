@@ -33,25 +33,16 @@ export default function Question() {
 
   return (
     <div style={{ position: "relative" }}>
- <div
-  className="
-    px-4 sm:px-6 md:px-10 lg:px-16
-    pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28
-    pb-12 sm:pb-16 md:pb-20 lg:pb-24
-  "
-  style={{
-    position: isMobile ? "relative" : "sticky",
-    top: 0,
-    height: isMobile ? "auto" : "100vh",
-    minHeight: "100vh",
-    overflow: "hidden",
-    background: "black",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center", // ✅ FIXED
-  }}
->
+      <div style={{
+        position: "relative",
+        height: isMobile ? "auto" : isShortDesktop ? "157vh" : "100vh",
+        overflow: "hidden",
+        background: "black",
+        display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center",
+        padding: isMobile ? "0px 20px 48px" : "48px 64px",
+        gap: isMobile ? 24 : 40,
+      }}>
         {!isMobile && (
           <div style={{
             position: "absolute",
@@ -65,14 +56,22 @@ export default function Question() {
 
         {/* ── Section 1: Questions ── */}
         <div style={{ width: "100%", maxWidth: 1300 }}>
-          <h2 className="sm:text-[70px] text-[30px]" style={{
-            fontFamily: "'Inter','Helvetica Neue',sans-serif",
-            fontWeight: 700, color: "white",
-            margin: "0 0 32px", textAlign: "center", lineHeight: isMobile ? "36px" : "60px",
-            opacity: 1, transform: "none",
-          }}>
-            This section answers questions like
-          </h2>
+       <h2
+  className="
+    text-[28px] sm:text-[40px] md:text-[52px] lg:text-[64px]
+    whitespace-nowrap
+  "
+  style={{
+    fontFamily: "'Inter','Helvetica Neue',sans-serif",
+    fontWeight: 700,
+    color: "white",
+    margin: "0 0 24px",
+    textAlign: "center",
+    lineHeight: 1.2,
+  }}
+>
+  This section answers questions like
+</h2>
 
           <div style={{
             display: "grid",
@@ -115,88 +114,124 @@ export default function Question() {
         }} />
 
         {/* ── Section 2: People ── */}
-        <div style={{ width: "100%", maxWidth: 1100 }}>
-          <h2
-            className="bg-gradient-to-r from-[#cdcdcd] to-white bg-clip-text text-transparent"
-            style={{
-              fontFamily: "'Inter','Helvetica Neue',sans-serif",
-              fontWeight: 700,
-              margin: "0 0 32px",
-              textAlign: "center",
-              lineHeight: 1.05,
-              opacity: 1,
-              transform: "none",
-              fontSize: isMobile ? 50 : 110,
-            }}
-          >
-            People in focus
-          </h2>
+        {/* ── Section 2: People ── */}
+<div
+  style={{
+    width: "100%",
+    maxWidth: 1100,
+    marginTop: isMobile ? "40px" : isShortDesktop ? "60px" : "80px", // ✅ FIXED GAP
+  }}
+>
+  <h2
+    className="bg-gradient-to-r from-[#cdcdcd] to-white bg-clip-text text-transparent"
+    style={{
+      fontFamily: "'Inter','Helvetica Neue',sans-serif",
+      fontWeight: 700,
+      margin: "0 0 32px",
+      textAlign: "center",
+      lineHeight: 1.05,
+      opacity: 1,
+      transform: "none",
+      fontSize: isMobile ? 50 : 110,
+    }}
+  >
+    People in focus
+  </h2>
 
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
-            gap: isMobile ? 24 : 20,
-            width: "100%",
-          }}>
-            {people.map((p, i) => (
-              <div key={i} style={{
-                background: "rgba(255,255,255,0.06)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                borderRadius: 16,
-                padding: isMobile ? "20px 20px 0" : "28px 28px 0",
-                display: "flex", flexDirection: "column",
-                position: "relative", overflow: "hidden",
-                minHeight: isMobile ? 200 : 280,
-                opacity: 1,
-                transform: "none",
-              }}>
-                <div style={{
-                  color: "#CE1010", fontSize: "18px",
-                  fontWeight: 600, marginBottom: 16,
-                  fontFamily: "'Inter',sans-serif",
-                }}>{p.label}</div>
-
-                <div style={{
-                  color: "white", marginTop: "12px",
-                  fontSize: isMobile ? "36px" : "clamp(26px,2.8vw,42px)",
-                  fontWeight: 700, lineHeight: 1, fontFamily: "'Inter',sans-serif",
-                }}>{p.riskRate}</div>
-                <div style={{ color: "white", fontSize: 18, marginTop: 6, marginBottom: 20 }}>
-                  Risk Rate
-                </div>
-
-                <div style={{ color: "white", fontSize: 18, marginBottom: 19, marginTop: 5 }}>
-                  Mean Age
-                </div>
-                <div style={{
-                  color: "white",
-                  fontSize: isMobile ? "36px" : "clamp(26px,2.8vw,42px)",
-                  fontWeight: 700, lineHeight: 1, fontFamily: "'Inter',sans-serif",
-                }}>{p.meanAge}</div>
-                <div style={{ color: "white", fontSize: 18, marginTop: 8, marginBottom: 20 }}>
-                  years
-                </div>
-
-                <img
-                  src={p.img}
-                  alt={p.label}
-                  style={{
-                    position: "absolute",
-                    bottom: p.style?.bottom || -10,
-                    right: p.style?.right || -10,
-                    width: 145,
-                    height: 145,
-                    objectFit: "contain",
-                    objectPosition: "bottom right",
-                    transform: `rotate(${p.style?.rotate || "10deg"})`,
-                    transformOrigin: "bottom right",
-                    opacity: 0.88,
-                  }}
-                />
-              </div>
-            ))}
-          </div>
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
+      gap: isMobile ? 24 : 20,
+      width: "100%",
+    }}
+  >
+    {people.map((p, i) => (
+      <div
+        key={i}
+        style={{
+          background: "rgba(255,255,255,0.06)",
+          border: "1px solid rgba(255,255,255,0.1)",
+          borderRadius: 16,
+          padding: isMobile ? "20px 20px 0" : "28px 28px 0",
+          display: "flex",
+          flexDirection: "column",
+          position: "relative",
+          overflow: "hidden",
+          minHeight: isMobile ? 200 : 280,
+          opacity: 1,
+          transform: "none",
+        }}
+      >
+        <div
+          style={{
+            color: "#CE1010",
+            fontSize: "18px",
+            fontWeight: 600,
+            marginBottom: 16,
+            fontFamily: "'Inter',sans-serif",
+          }}
+        >
+          {p.label}
         </div>
+
+        <div
+          style={{
+            color: "white",
+            marginTop: "12px",
+            fontSize: isMobile ? "36px" : "clamp(26px,2.8vw,42px)",
+            fontWeight: 700,
+            lineHeight: 1,
+            fontFamily: "'Inter',sans-serif",
+          }}
+        >
+          {p.riskRate}
+        </div>
+
+        <div style={{ color: "white", fontSize: 18, marginTop: 6, marginBottom: 20 }}>
+          Risk Rate
+        </div>
+
+        <div style={{ color: "white", fontSize: 18, marginBottom: 19, marginTop: 5 }}>
+          Mean Age
+        </div>
+
+        <div
+          style={{
+            color: "white",
+            fontSize: isMobile ? "36px" : "clamp(26px,2.8vw,42px)",
+            fontWeight: 700,
+            lineHeight: 1,
+            fontFamily: "'Inter',sans-serif",
+          }}
+        >
+          {p.meanAge}
+        </div>
+
+        <div style={{ color: "white", fontSize: 18, marginTop: 8, marginBottom: 20 }}>
+          years
+        </div>
+
+        <img
+          src={p.img}
+          alt={p.label}
+          style={{
+            position: "absolute",
+            bottom: p.style?.bottom || -10,
+            right: p.style?.right || -10,
+            width: 145,
+            height: 145,
+            objectFit: "contain",
+            objectPosition: "bottom right",
+            transform: `rotate(${p.style?.rotate || "10deg"})`,
+            transformOrigin: "bottom right",
+            opacity: 0.88,
+          }}
+        />
+      </div>
+    ))}
+  </div>
+</div>
       </div>
     </div>
   );

@@ -33,24 +33,20 @@ export default function FraudSection() {
 
   return (
     <div ref={sectionRef} style={{ position: "relative" }}>
-    <div
-  className="
-    px-4 sm:px-6 md:px-10 lg:px-16
-    pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28
-    pb-12 sm:pb-16 md:pb-20 lg:pb-24
-  "
-  style={{
-    position: isMobile ? "relative" : "sticky",
-    top: 0,
-    height: isMobile ? "auto" : isShortDesktop ? "105vh" : "95vh",
-    overflow: "hidden",
-    background: "black",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "flex-start",
-  }}
->
+      <div
+        style={{
+          position: "relative", // ✅ FIXED (removed sticky)
+          top: 0,
+          height: "auto", // ✅ FIXED (removed vh)
+          overflow: "visible", // ✅ FIXED
+          background: "black",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          padding: isMobile ? "60px 16px 40px" : isShortDesktop ? "85px 64px 36px" : "50px 64px 20px",
+        }}
+      >
         {/* Ellipse decoration — desktop only */}
         {!isMobile && (
           <div
@@ -114,13 +110,21 @@ export default function FraudSection() {
             opacity: 1,
             transform: "none",
             zIndex: 1,
+            marginBottom: "16px", // ✅ ADDED (controlled spacing)
           }}
         >
           <img
             src="/assets/graph.gif"
             alt="Gig workforce growth chart"
-            style={{ width: "100%", display: "block", borderRadius: 4 }}
+            style={{
+              width: "100%",
+              maxWidth: "clamp(320px, 70vw, 900px)", // ✅ FIXED SIZE
+              margin: "0 auto",
+              display: "block",
+              borderRadius: 4,
+            }}
           />
+
           <div style={{ textAlign: "center", marginTop: 6, marginBottom: 4, opacity: 1 }}>
             <span style={{ color: "rgba(255,255,255,0.38)", fontSize: isMobile ? 10 : 13, fontFamily: "'Inter', sans-serif" }}>
               Source:{" "}
@@ -142,7 +146,7 @@ export default function FraudSection() {
             fontSize: isMobile ? "13px" : "28px",
             fontFamily: "'Inter', sans-serif",
             textAlign: "center",
-            margin: isMobile ? "8px 0 20px" : "8px 0 0px",
+            margin: "24px 0 0px", // ✅ FIXED
             maxWidth: 700,
             zIndex: 1,
             opacity: 1,

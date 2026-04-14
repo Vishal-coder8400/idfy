@@ -74,16 +74,34 @@ export default function GeographicSection() {
 
   return (
     <div ref={sectionRef} style={{ position: "relative" }}>
-      <div style={{
-        position: "relative",
-        height: isMobile ? "auto" : isShortDesktop ? "135vh" : "100vh",
-        overflow: "hidden",
-        background: "black",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: isMobile ? "0px 56px 40px" : "54px 56px 40px",
-      }}>
+   <div
+  style={{
+    position: "relative",
+
+    // ❌ REMOVE fixed heights completely
+    // height: isMobile ? "auto" : isShortDesktop ? "135vh" : "100vh",
+
+    // ✅ ALWAYS natural height
+    height: "auto",
+
+    // ❌ REMOVE hidden (causing crop)
+    // overflow: "hidden",
+
+    // ✅ allow full content
+    overflow: "visible",
+
+    background: "black",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+
+    // ✅ UNIVERSAL RESPONSIVE SPACING (Figma-like)
+    paddingTop: isMobile ? 60 : isTablet ? 80 : isShortDesktop ? 90 : 110,
+    paddingBottom: isMobile ? 60 : isTablet ? 80 : isShortDesktop ? 90 : 110,
+    paddingLeft: isMobile ? 20 : 56,
+    paddingRight: isMobile ? 20 : 56,
+  }}
+>
         <div style={{ position: "absolute", top: 0, left: -450, zIndex: 0 }}>
           <img src="/assets/Ellipse.png" alt="ellipse"
             style={{ width: "900px", height: "900px", opacity: 1 }} />
@@ -97,21 +115,30 @@ export default function GeographicSection() {
           position: "relative",
           zIndex: 1,
         }}>
-          <h2
-            style={{
-              fontFamily: "Inter",
-              fontWeight: 700,
-              color: "white",
-              margin: 0,
-              lineHeight: 1.05,
-              /* Changed from 120px → 80px */
-              fontSize: isMobile ? "39px" : "80px",
-              maxWidth: isMobile ? "100%" : "900px",
-            }}
-          >
-            Geographic Risk Concentration
-            {/* <br className="sm:flex hidden" /> */}
-          </h2>
+        <h2
+  style={{
+    fontFamily: "Inter",
+    fontWeight: 700,
+    color: "white",
+    margin: 0,
+    lineHeight: 1.05,
+
+    // ✅ responsive font (prevents breaking)
+    fontSize: isMobile ? "22px" : "clamp(40px, 5vw, 80px)",
+
+    // ❌ REMOVE maxWidth restriction
+    // maxWidth: isMobile ? "100%" : "900px",
+
+    // ✅ force single line
+    whiteSpace: "nowrap",
+
+    // ✅ prevent overflow breaking layout
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+  }}
+>
+  Geographic Risk Concentration
+</h2>
           <p style={{
             color: "white",
             margin: "12px 0 0",
