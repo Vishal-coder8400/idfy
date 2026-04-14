@@ -175,15 +175,19 @@ export default function StatsSection() {
   if (isMobile) {
     return (
       <div ref={sectionRef} style={{ background: "black", width: "100%" }}>
-        <div style={{
-          background: "black",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          boxSizing: "border-box",
-          width: "100%",
-          padding: "48px 16px 36px",
-        }}>
+      <div
+  style={{
+    background: "black",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    boxSizing: "border-box",
+    width: "100%",
+
+    // ✅ equal spacing (top = bottom)
+    padding: "60px 16px 60px",
+  }}
+>
           {/* Title 1 */}
           <h2
             className="text-[30px]"
@@ -273,19 +277,29 @@ export default function StatsSection() {
   // ── DESKTOP ──
   return (
     <div ref={sectionRef} style={{ position: "relative" }}>
-      <div
-        style={{
-          position: "relative",
-          overflow: "hidden",
-          background: "black",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          boxSizing: "border-box",
-          width: "100%",
-          padding: "48px clamp(24px, 4vw, 64px) 36px",
-        }}
-      >
+    <div
+  style={{
+    position: "relative",
+
+    // ❌ was hidden → causing bottom crop
+    overflow: "visible",
+
+    background: "black",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    boxSizing: "border-box",
+    width: "100%",
+
+    // ✅ equal top & bottom spacing (safe for all devices)
+    paddingTop: 100,
+    paddingBottom: 100,
+
+    // ✅ keep your responsive side spacing
+    paddingLeft: "clamp(24px, 4vw, 64px)",
+    paddingRight: "clamp(24px, 4vw, 64px)",
+  }}
+>
         {/* Title 1 */}
         <h2
           className="sm:text-[105px]"
